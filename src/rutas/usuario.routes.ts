@@ -1,5 +1,9 @@
 import { Router } from 'express'
-import { obtenerUsuarios, guardarUsuario } from '../controladores/usuarios.controladores'
+import {
+  obtenerUsuarios,
+  loginUsuario,
+  registroUsuario
+} from '../controladores/usuarios.controladores'
 
 const router = Router()
 
@@ -7,6 +11,7 @@ const router = Router()
 router.get('/usuario', obtenerUsuarios)
 
 // Peticiones de tipo POST
-router.post('/usuario', guardarUsuario)
+router.post('/login', loginUsuario)
+router.post('/register', registroUsuario)
 
 export default router
