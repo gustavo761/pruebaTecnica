@@ -48,7 +48,7 @@ Debe crear el esquema `testnodejs` utilizando el siguiente comando:
 
 ```bash
 # creando esquemas
-psql -h localhost -p 5432 -U postgres -d database_db -c "CREATE SCHEMA testnodejs AUTHORIZATION postgres"
+psql -h localhost -p 5432 -U postgres -d tareas_db -c "CREATE SCHEMA testnodejs AUTHORIZATION postgres"
 ```
 
 Finalmente ejecute el siguiente comando que iniciará la migración existente en el repositorio: 
