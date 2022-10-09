@@ -5,12 +5,12 @@ export class AuditoriaEntity {
   @Column()
   usuarioCreacion: string
 
-  @Column()
-  usuarioActualizacion: string
+  @Column({ nullable: true })
+  usuarioActualizacion?: string
 
   @Column()
   fechaCreación: string
 
-  @Column()
-  fechaActualizacion: string
+  @Column({ nullable: true })
+  fechaActualizacion?: string
 }
