@@ -28,4 +28,9 @@ export class Usuario extends AuditoriaEntity{
 
   @OneToMany(() => Tareas, (tareas) => tareas.usuario)
   public tareas!: Tareas[]
+
+  constructor(partial: Partial<Usuario> = {}) {
+    super()
+    Object.assign(this, partial)
+  }
 }

@@ -28,4 +28,9 @@ export class Tareas extends AuditoriaEntity{
     referencedColumnName: 'id',
   })
   public usuario!: Usuario
+
+  constructor(partial: Partial<Tareas> = {}) {
+    super()
+    Object.assign(this, partial)
+  }
 }
