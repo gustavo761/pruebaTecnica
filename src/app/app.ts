@@ -12,7 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 // Rutas para usuario
-app.use('/api', usuarioRutas)
+app.use('/auth', usuarioRutas)
 
 // Rutas para tareas
 app.use('/api', tareasRutas)
