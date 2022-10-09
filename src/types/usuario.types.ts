@@ -4,3 +4,5 @@ export interface UsuarioGuardar {
   correoElectronico: string
   contrasena: string
 }
+
+export type UsuarioLogin = Pick<UsuarioGuardar, 'correoElectronico' | 'contrasena'>
