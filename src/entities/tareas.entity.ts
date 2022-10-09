@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, BaseEntity } from "typeorm";
 import dotenv from 'dotenv'
 import { AuditoriaEntity } from "./auditoria.entity";
 import { Usuario } from "./usuario.entity";
@@ -19,10 +19,7 @@ export class Tareas extends AuditoriaEntity{
   @Column({ length: 15, type: 'varchar', default: 'PENDIENTE' })
   estado: string
 
-  @ManyToOne(() => Usuario, (usuario) => usuario.tareas, {
-    nullable: false,
-    cascade: true,
-  })
+  @ManyToOne(() => Usuario, (usuario) => usuario.tareas)
   @JoinColumn({
     name: 'id_usuario',
     referencedColumnName: 'id',

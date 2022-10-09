@@ -1,4 +1,3 @@
-import { DataSource } from "typeorm"
 import { Usuario } from "../entities/usuario.entity"
 import { UsuarioGuardar } from "../types/usuario.types"
 import { AppDataSource } from "../database/db"

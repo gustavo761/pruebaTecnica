@@ -26,7 +26,9 @@ export class Usuario extends AuditoriaEntity{
   @Column({ length: 15, type: 'varchar', default: 'ACTIVO' })
   estado: string
 
-  @OneToMany(() => Tareas, (tareas) => tareas.usuario)
+  @OneToMany(() => Tareas, (tareas) => tareas.usuario, {
+    cascade:true
+  })
   public tareas!: Tareas[]
 
   constructor(partial: Partial<Usuario> = {}) {
