@@ -8,9 +8,9 @@ export class AuditoriaEntity {
   @Column({ nullable: true })
   usuarioActualizacion?: string
 
-  @Column()
-  fechaCreación: string
+  @Column({ type: 'date'})
+  fechaCreación: Date
 
-  @Column({ nullable: true })
-  fechaActualizacion?: string
+  @Column({ nullable: true, type: 'date' })
+  fechaActualizacion?: Date
 }
