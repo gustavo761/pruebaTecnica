@@ -1,6 +1,7 @@
 import { Usuario } from "../entities/usuario.entity"
 import { UsuarioGuardar } from "../types/usuario.types"
 import { AppDataSource } from "../database/db"
+import { encriptar } from "../utils/bcrypt.handle"
 
 
 export const obtenerUsuariosService = async () => {
@@ -17,13 +18,22 @@ export const obtenerUsuariosService = async () => {
     .getManyAndCount()
 }
 
+export const buscarUsuarioPorCorreo = async (correo: string) => {
+  return await AppDataSource
+    .getRepository(Usuario)
+    .createQueryBuilder('usuario')
+    .select('usuario')
+    .where('usuario.correoElectronico = :correo', { correo })
+    .getOne()
+}
+
 export const guardarUsuariosService = async (usuario: UsuarioGuardar, usuarioAuditoria: string) => {
-  const contrasena = usuario.contrasena // Encriptar contrasena
+  const contrasenaHash = await encriptar(usuario.contrasena) 
   const newUsuario = new Usuario({
     nombres: usuario.nombres,
     apellidos: usuario.apellidos,
     correoElectronico: usuario.correoElectronico,
-    contrasena: contrasena,
+    contrasena: contrasenaHash,
     usuarioCreacion: usuarioAuditoria,
     fechaCreación: new Date()
   })

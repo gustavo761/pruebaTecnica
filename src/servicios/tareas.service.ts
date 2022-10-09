@@ -23,11 +23,9 @@ export const creaTareaService = async (tarea: CrearTarea, usuarioAuditoria: stri
     descripcion: tarea.descripcion,
     usuarioCreacion: usuarioAuditoria,
     fechaCreación: new Date(),
-    usuario: new Usuario({ id: tarea.usuario})
+    usuario: new Usuario({ id: usuarioAuditoria})
   })
   console.log('NUEVA TAREA CREADA', newTarea)
-  // await newTarea.save()
-  // return newTarea
   return await AppDataSource
     .getRepository(Tareas)
     .save(newTarea)
