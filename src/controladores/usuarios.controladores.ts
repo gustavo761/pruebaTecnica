@@ -9,7 +9,14 @@ const obtenerUsuarios = async (_req: Request, res: Response) => {
   try {
     const respuesta = await obtenerUsuariosService()
     console.log(respuesta)
-    return res.status(200).json(respuesta)
+    return res.status(200).json({
+      finalizado:true,
+      message: 'Consulta realizada con éxito',
+      data: {
+        filas: respuesta[0],
+        cantidad: respuesta[1]
+      }
+    })
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({
@@ -30,7 +37,11 @@ const guardarUsuario = async (req: Request, res: Response) => {
       contrasena: req.body.contrasena
     }
     const respuesta = await guardarUsuariosService(body, usuarioAuditoria)
-    return res.status(200).json(respuesta)
+    return res.status(200).json({
+      finalizado:true,
+      message: 'Consulta realizada con éxito',
+      data: respuesta
+    })
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({
