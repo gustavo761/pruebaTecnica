@@ -1,11 +1,13 @@
 import { Request, Response} from 'express'
 import { actualizarTareasService, creaTareaService, obtenerTareaService } from '../servicios/tareas.service'
 import { ActualizarTarea, CrearTarea } from '../types/tareas.types'
+import { extraerPayload } from '../utils/jwt.handle'
 
 const obtenerTareas = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params
-    console.log('id de la tarea', id)
+    const jwtusuario = req.headers.authorization || ''
+    const jwt = jwtusuario.split(' ').pop()
+    const { id } = extraerPayload(`${jwt}`)
     const respuesta = await obtenerTareaService(id)
     return res.status(200).json({
       finalizado:true,
@@ -28,9 +30,11 @@ const obtenerTareas = async (req: Request, res: Response) => {
 const crearTareas = async (req: Request, res: Response) => {
   try {
     console.log('data recibida', req.body)
-    const { usuario } = req.body
+    const jwtusuario = req.headers.authorization || ''
+    const jwt = jwtusuario.split(' ').pop()
+    const { id } = extraerPayload(`${jwt}`)
     const body: CrearTarea = req.body
-    const respuesta =  await creaTareaService(body, usuario)
+    const respuesta =  await creaTareaService(body, id)
     return res.status(200).json({
       finalizado:true,
       message: 'Tarea Registrada correctamente',
