@@ -1,7 +1,6 @@
-import { Column, Entity } from "typeorm";
+import { Column } from "typeorm";
 
-@Entity()
-export class AuditoriaEntity {
+export abstract class AuditoriaEntity {
   @Column()
   usuarioCreacion: string
 

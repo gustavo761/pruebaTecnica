@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || "postgres",
   password: process.env.DB_PASSORD || "postgres",
   database: process.env.DB_DATABASE || "tareas_db",
-  synchronize: true,
+  synchronize: false,
   entities: [Usuario, Tareas],
   logging: true,
 })
