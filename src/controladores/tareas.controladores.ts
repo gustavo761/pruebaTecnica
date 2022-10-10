@@ -52,10 +52,13 @@ const crearTareas = async (req: Request, res: Response) => {
 
 const actualizarTareas = async (req: Request, res: Response) => {
   try {
-    const usuarioAuditoria = req.body.idUsuario
+    // const usuarioAuditoria = req.body.idUsuario
+    const jwtusuario = req.headers.authorization || ''
+    const jwt = jwtusuario.split(' ').pop()
+    const ident = extraerPayload(`${jwt}`)
     const { id } = req.params
-    const body: ActualizarTarea = { id, ...req.body}
-    const respuesta = await actualizarTareasService(body, usuarioAuditoria)
+    const body: ActualizarTarea = { idTarea:id, ...req.body}
+    const respuesta = await actualizarTareasService(body, ident.id)
     return res.status(200).json({
       finalizado:true,
       message: 'Tarea actualizada correctamente',

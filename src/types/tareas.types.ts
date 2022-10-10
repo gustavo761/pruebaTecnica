@@ -3,7 +3,7 @@ export interface CrearTarea {
   descripcion: string
 }
 
-type estadoTarea = 'PENDIENTE' | 'FINALIZADO'
+type estadoTarea = 'PENDIENTE' | 'FINALIZADO' | 'ELIMINADO'
 
 export interface ActualizarTarea extends CrearTarea {
   idTarea: string

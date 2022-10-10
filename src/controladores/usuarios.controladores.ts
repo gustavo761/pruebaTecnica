@@ -50,7 +50,8 @@ const loginUsuario = async ({body}: Request, res: Response) => {
     })
   } catch (error) {
     if (error instanceof Error) {
-      return res.status(500).json({
+      return res.json({
+        finalizado: false,
         message: error.message
       })
     }
@@ -62,7 +63,11 @@ const registroUsuario = async ({body}: Request, res: Response) => {
     const usuarioAuditoria = '1' // En caso de existir algun administrador se debe capturar su id
     const existenciaUsuario = await buscarUsuarioPorCorreo(body.correoElectronico)
     if ( existenciaUsuario ) {
-      throw new Error('Los datos ingresados son inválidos, intente nuevamente')
+      // throw new Error('Los datos ingresados son inválidos, intente nuevamente')
+      return res.json({
+        finalizado: false,
+        messaje: 'Error en los datos ingresados'
+      })
     }
     const respuesta = await guardarUsuariosService(body, usuarioAuditoria)
     return res.status(200).json({

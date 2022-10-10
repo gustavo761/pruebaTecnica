@@ -14,6 +14,7 @@ export const obtenerTareaService = async (idUsuario: string) => {
       'tareas.estado'
     ])
     .where('tareas.usuario = :idUsuario', {idUsuario})
+    .andWhere('tareas.estado != :estado', {estado:'ELIMINADO'})
     .getManyAndCount()
 }
 
